@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet Image Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guirlanda do P&D SW</h1>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        var goldIcon = new L.Icon({
+            iconUrl: 'img/marker-icon-2x-gold.png',
+            shadowUrl: 'img/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        var orangeIcon = new L.Icon({
+            iconUrl: 'img/marker-icon-2x-orange.png',
+            shadowUrl: 'img/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        // Dimensões conhecidas da imagem em pixels
+        const imageWidth = 1024;
+        const imageHeight = 1024;
+
+        // Inicializa o mapa
+        const map = L.map('map', {
+            crs: L.CRS.Simple, // Utiliza um sistema de referência de coordenadas simples
+            minZoom: -1,
+            maxZoom: 2,
+            zoomSnap: 0.1
+        });
+
+        // Calcula as dimensões do mapa em unidades de "coordenadas"
+        const bounds = [[0, 0], [imageHeight, imageWidth]];
+
+        // Adiciona a imagem como camada do mapa
+        const imageUrl = 'guirlanda2.png'; // Caminho da imagem PNG
+        L.imageOverlay(imageUrl, bounds).addTo(map);
+
+        // Ajusta o mapa para mostrar toda a imagem
+        map.fitBounds(bounds);
+
+        // Adiciona marcadores (opcional)
+        L.marker([629.083344, 595.644532], {icon: goldIcon}).addTo(map).bindPopup('Foto do time durante a celebração das entregas das releases dos times, realizado em 5/10/2024');
+        L.marker([791.083344, 381.701727], {icon: goldIcon}).addTo(map).bindPopup('Participação do time durante a SISPAT, representação do SW na CIPA e na organização');
+        L.marker([336.641051, 244.997738], {icon: orangeIcon}).addTo(map).bindPopup('Representa a nossa nova fonte trifásica (padrão) que foi adquirida');
+        L.marker([703.083344, 783.594285], {icon: orangeIcon}).addTo(map).bindPopup('5B conflitos saudáveis');
+        L.marker([737.083344, 279.731662], {icon: goldIcon}).addTo(map).bindPopup('Requisito de High Availability implementado no Application Manager');
+        L.marker([366.804089, 192.674101], {icon: goldIcon}).addTo(map).bindPopup('Joaninha representando os \'Bugs\' que representam os defeitos encontrados durante etapas de validação e resolvidos pelos times');
+        L.marker([566.451464, 234.568573], {icon: goldIcon}).addTo(map).bindPopup('Para simbolizar as demandas/bugs/entregas dentro dos prazo do time de sustentação (S3G)');
+        L.marker([672.841569, 378.134307], {icon: goldIcon}).addTo(map).bindPopup('Novos colaboradores contratados durante o ano. Em especial a formação do time do Emerge para SAM, com a entrada de 14 pessoas!');
+        L.marker([251.08184, 284.052819], {icon: goldIcon}).addTo(map).bindPopup('Novos estagiários contratados durante o ano');
+        L.marker([189.083344, 341.712418], {icon: goldIcon}).addTo(map).bindPopup('Parceria com o Japão, relacionado ao projeto TEPCO - SIT/Tech Studio');
+        L.marker([71.093698, 392.34599], {icon: goldIcon}).addTo(map).bindPopup('Ferramentas de suporte criadas e melhoradas, SMP, eficiência de builds e diversas outras. Atuação em todo o ciclo de desenvolvimento, desde a criação de requerimentos até a apresentação de demos.');
+        L.marker([408.435192, 261.249238], {icon: goldIcon}).addTo(map).bindPopup('Sessões de revisão de código e troca de conhecimento entre desenvolvedores');
+        L.marker([103.62061, 653.905573], {icon: goldIcon}).addTo(map).bindPopup('Times migrando mais fortemente para o Google Cloud Platform, Time Emerge SAM e antigo time do Command Center agora trabalhando juntos no Emerge');
+        L.marker([628.436601, 827.354882], {icon: goldIcon}).addTo(map).bindPopup('Sessões com todos os times, em conjunto com o RH, onde tivemos conversas super importantes sobre diversidade');
+        L.marker([308.406285, 52.252341], {icon: goldIcon}).addTo(map).bindPopup('Inclusão do novo medidor de TRAFO no CMA - S3G');
+        L.marker([498.745015, 979.412078], {icon: goldIcon}).addTo(map).bindPopup('Implementação da geração do arquivo de meter program do Magno - S3G');
+        L.marker([473.083344, 325.716694], {icon: goldIcon}).addTo(map).bindPopup('Entrega dos requisitos relacionados ao Magno Grid, incluindo suporte a TOU, Qualidade de Energia e melhoria de performance de rede, entre outros!');
+        L.marker([242.624517, 930.253077], {icon: goldIcon}).addTo(map).bindPopup('Entregas das releases do Command Center, versões 8.7 e 9.0.0 com sucesso e no prazo');
+        L.marker([621.382996, 933.390939], {icon: goldIcon}).addTo(map).bindPopup('Conquistas de automação focada no produto Emerge');
+        L.marker([88.541672, 554.586534], {icon: goldIcon}).addTo(map).bindPopup('Comemorando o crescimento na cobertura de testes automatizados realizados pelo SIT');
+        L.marker([230.541672, 723.541366], {icon: goldIcon}).addTo(map).bindPopup('Autenticação LDAP - Superado com muitas mãos amigas numa entrega fantástica do MDMS.');
+        L.marker([403.541672, 857.505552], {icon: goldIcon}).addTo(map).bindPopup('Comemorando os diversos cafés que tivemos durante o ano, cada um agregando com a evolução de temas muito importantes e team building.');
+        L.marker([254.541672, 855.506086], {icon: goldIcon}).addTo(map).bindPopup('Representando todos os happy hours e celebrações que tivemos durante o nosso ano, demonstrando como o time é unido');
+        L.marker([166.896276, 231.392182], {icon: goldIcon}).addTo(map).bindPopup('Inseticida representando o extermínio de bugs que todo o time fez durante esse ano');
+        L.marker([89.885418, 451.654384], {icon: goldIcon}).addTo(map).bindPopup('Comemorando todas as certificações e treinamentos obtidos durante o ano. CTFL, Scrum Alliance e outras!');
+        L.marker([809.305859, 709.818216], {icon: goldIcon}).addTo(map).bindPopup('Erik Pikachu Murakami, sempre animando as corridas da Landis!');
+        L.marker([157.15995, 786.832005], {icon: goldIcon}).addTo(map).bindPopup('Medidor E550 G2, suportado agora no HES, Tech Studio e Meter.Comm!');
+        L.marker([839.042093, 527.803164], {icon: goldIcon}).addTo(map).bindPopup('Reresentando as entregas do time do MDMS junto com ao time dos EUA CLECO, G480 e suporte/trabalho com o time dos EUA');
+        
+        
+        var popup = L.popup();
+
+        function onMapClick(e) {
+            popup
+                .setLatLng(e.latlng)
+                .setContent("You clicked the map at " + e.latlng.toString())
+                .openOn(map);
+        }
+
+        //map.on('click', onMapClick);
+    </script>
+</body>
+</html>
